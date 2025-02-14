@@ -1,8 +1,10 @@
 import React from "react";
 import video from "./assets/background-video.mp4";
 import InputBox from "./components/InputBox";
+import Star from "./components/Star";
 
 const App = () => {
+  
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Video Background */}
@@ -16,10 +18,13 @@ const App = () => {
       </video>
 
       {/* Overlay Text */}
+      <div className="fixed top-0 p-10 right-0 text-white cursor-pointer z-50" >
+    <Star />
+      </div>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
         <h3 className="text-xl font-bold ">Welcome to </h3>
         <h1 className="text-5xl font-bold ">GitHub's Got Latent</h1>
-        <p className="text-lg mt-4 mx-20">Less contributions, more humiliation. Get a GitHub roast hotter than your CPU!</p>
+        <p className="text-lg mt-5 mx-20">Less contributions, more humiliation. Get a GitHub roast hotter than your CPU!</p>
         <InputBox/>
       </div>
 
