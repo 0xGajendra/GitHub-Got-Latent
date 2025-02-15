@@ -13,4 +13,4 @@ const Star = () => {
   )
 }
 
-export default Star
+export default React.memo(Star);
