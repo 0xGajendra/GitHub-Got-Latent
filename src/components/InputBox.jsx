@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import {fetchGitHubUser} from '../api/githubApi'
+import {fetchRepoStats, fetchUserProfile} from '../api/githubApi'
 
-const InputBox = () => {
+const InputBox = ({setData,setRepodata}) => {
   const [username,setUsername]=useState('');
-  const [data, setData] = useState(null);
   const handleClick = async ()=>{
     if(!username.trim()) return;
-    const userData = await fetchGitHubUser(username)
-    setData(userData)
-    console.log(userData);
+    const userData = await fetchUserProfile(username);
+    const repoData = await fetchRepoStats(username);
+    setData(userData);
+    setRepodata(repoData);
   }
  
   return (

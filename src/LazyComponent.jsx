@@ -4,6 +4,8 @@ import InputBox from "./components/InputBox";
 import Star from "./components/Star";
 import Profile from"./components/Profile"
 const LazyComponent = () => {
+  const [data, setData] = useState(null);
+  const [repodata, setRepodata] = useState({});
   return (
     <div>
       <video
@@ -24,8 +26,9 @@ const LazyComponent = () => {
         <h3 className="text-xl font-bold ">Welcome to </h3>
         <h1 className="text-5xl font-bold ">GitHub's Got Latent</h1>
         <p className="text-lg mt-5 mx-20">Less contributions, more humiliation. Get a GitHub roast hotter than your CPU!</p>
-        <InputBox/>
-        <Profile/>
+        <InputBox setData={setData} setRepodata={setRepodata} />
+          <Profile data={data} repodata={repodata}/>
+        
       </div>
     </div>
   )

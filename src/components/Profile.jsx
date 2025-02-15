@@ -1,31 +1,39 @@
-import React from 'react'
+import { div } from "motion/react-client";
+import React from "react";
+import Roast from "./Roast";
 
-const Profile = () => {
-  return (
-    <div className='text-white backdrop-blur-sm w-80 border-[#FF6002] border rounded-2xl flex justify-center gap-3 h-20 items-center'>
-        <div>
-       <img src="https://avatars.githubusercontent.com/u/176354934?v=4" className='rounded-2xl w-14 left-0' alt="user-pfp" />
-       </div>
-       <div>
-
-       <div className='flex items-center justify-center gap-3 '>
-       <h5 className='text-white font-bold '> Gajendra Rao </h5>
-       <div className='text-gray-300 text-sm'> <span>@</span>0xGajendra </div>
-       </div>
-       <div className='text-2xl-white flex gap-2'>
-       <div>
-       Followers: 5
-        </div> 
-        <div>
-        Following: 7
+const Profile = ({ data, repodata }) => {
+  if (data) {
+    return (
+      <div className="flex flex-col justify-center items-center">
+        <div className="text-white backdrop-blur-sm w-80 border-[#FF6002] border rounded-2xl flex justify-center gap-3 h-20 items-center">
+          <div>
+            <img
+              src={data.profilePicture}
+              className="rounded-2xl w-14 left-0"
+              alt="user-pfp"
+            />
+          </div>
+          <div>
+            <div className="flex items-center justify-center gap-3 ">
+              <h5 className="text-white font-bold "> {data.name}</h5>
+              <div className="text-gray-300 text-sm">
+                {" "}
+                <span>@</span>
+                {data.username}{" "}
+              </div>
+            </div>
+            <div className="text-md flex gap-2">
+              <div>Followers: {data.followers}</div>
+              <div>Following: {data.following}</div>
+            </div>
+          </div>
         </div>
-       </div>
-       </div>
-       
-       
-        
-    </div>
-  )
-}
+        <Roast data={data} repodata={repodata} />
+      </div>
+    );
+  }
+  return <></>;
+};
 
-export default Profile
+export default Profile;
