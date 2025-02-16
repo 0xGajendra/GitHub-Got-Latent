@@ -32,12 +32,12 @@ export const fetchRepoStats = async (username) => {
       forks: repos.reduce((sum, repo) => sum + repo.forks_count, 0),
    
       // Determine the most used programming language
-      top_language: repos.reduce((acc, repo) => {
+      top_language: Object.entries(repos.reduce((acc, repo) => {
         if (repo.language) {
           acc[repo.language] = (acc[repo.language] || 0) + 1; // Count occurrences of each language
         }
         return acc;
-      }, {}), // Start with an empty object
+      }, {})), // Start with an empty object
   
       // Find the most recently updated repository
       last_updated_repo: repos.sort(
@@ -48,9 +48,6 @@ export const fetchRepoStats = async (username) => {
     // Step 5: Return the processed statistics
     return repoStats;
   };
-  
-  // Example usage: Fetch and log repo stats for a GitHub user
-  fetchRepoStats("octocat", "your_github_token").then(console.log);
   
 
  export const fetchUserProfile = async (username, ) => {

@@ -1,6 +1,6 @@
-import { div } from "motion/react-client";
+
 import React from "react";
-import Roast from "./Roast";
+
 
 const Profile = ({ data, repodata }) => {
   if (data) {
@@ -29,7 +29,7 @@ const Profile = ({ data, repodata }) => {
             </div>
           </div>
         </div>
-        <Roast data={data} repodata={repodata} />
+        
       </div>
     );
   }

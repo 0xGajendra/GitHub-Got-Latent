@@ -3,6 +3,7 @@ import video from "./assets/background-video.webm";
 import InputBox from "./components/InputBox";
 import Star from "./components/Star";
 import Profile from"./components/Profile"
+import Roast from './components/Roast';
 const LazyComponent = () => {
   const [data, setData] = useState(null);
   const [repodata, setRepodata] = useState({});
@@ -28,7 +29,7 @@ const LazyComponent = () => {
         <p className="text-lg mt-5 mx-20">Less contributions, more humiliation. Get a GitHub roast hotter than your CPU!</p>
         <InputBox setData={setData} setRepodata={setRepodata} />
           <Profile data={data} repodata={repodata}/>
-        
+          <Roast data={data} repodata={repodata} />
       </div>
     </div>
   )
