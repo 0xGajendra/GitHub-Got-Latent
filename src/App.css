@@ -1,8 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import "tailwindcss";
 
-.vt323-regular {
-    font-family: "VT323", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
+@theme {
+  --font-vt323: "VT323", sans-serif;
+}

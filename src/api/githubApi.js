@@ -12,19 +12,8 @@ export const fetchRepoStats = async (username) => {
     if (!response.ok) throw new Error("Failed to fetch repos");
     const repos = await response.json();
     const repoStats = {
-        // The reduce() method processes an array and reduces it to a **single value** 
-        // (e.g., sum, product, object, or another aggregated result). 
-     
-        // Syntax:
-        // array.reduce((accumulator, currentValue) => {
-        //     // Process each item and update accumulator
-        //     return updatedAccumulator;
-        // }, initialValue);
-     
-        // Parameters:
-        // - accumulator: Stores the ongoing result.
-        // - currentValue: The current element in the loop.
-        // - initialValue (optional): The starting value of accumulator.
+        // The reduce() method processes an array and reduces it to a **single value**
+
       total_repos: repos.length,
   
       stars: repos.reduce((sum, repo) => sum + repo.stargazers_count, 0),
@@ -37,15 +26,15 @@ export const fetchRepoStats = async (username) => {
           acc[repo.language] = (acc[repo.language] || 0) + 1; // Count occurrences of each language
         }
         return acc;
-      }, {})), // Start with an empty object
+      }, {})),
+
+      
   
-      // Find the most recently updated repository
+      
       last_updated_repo: repos.sort(
         (a, b) => new Date(b.updated_at) - new Date(a.updated_at) // Sort by update time
       )[0]?.updated_at || "No repos found", // Get the latest update time or return "No repos found"
     };
-  
-    // Step 5: Return the processed statistics
     return repoStats;
   };
   
