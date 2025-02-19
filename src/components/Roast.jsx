@@ -11,7 +11,7 @@ const Roast = ({ data, repodata }) => {
 DO NOT include unnecessary phrases like '[object Object]'. Stick to the facts.
 
 Username: ${data.username}
-Total Repos: ${repodata.total_repos}
+Total Public Repos: ${repodata.total_repos}
 Stars: ${repodata.stars}
 Forks: ${repodata.forks}
 Most Used Language: ${repodata.top_language}
@@ -47,7 +47,7 @@ Make it dark, funny, and Instagram-comment-style. Keep it around 150 words, not 
     return <></>;
   }
   return (
-    <div className="h-full drop-shadow-2xl backdrop-blur-sm w-3xl mt-10 border border-amber-50 rounded-2xl tracking-wider flex justify-center items-center px-5">
+    <div className="h-full drop-shadow-2xl backdrop-blur-sm w-sm text-sm mt-10 border text-white border-amber-50 rounded-2xl tracking-wider flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
       {roast}
     </div>
   );
