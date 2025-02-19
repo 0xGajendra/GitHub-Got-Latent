@@ -1,17 +1,22 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+const BASE_URL = import.meta.env.VITE_GEMINI_BASE_URL
 
 export const generateRoast = async (roastPrompt)=>{
     try {
-        console.log(roastPrompt);
-        const model = genAI.getGenerativeModel({model: "gemini-2.0-flash"})
-        const result = await model.generateContent(roastPrompt);
-        const response = await result.response;
-        console.log(response.text());
-        return response.text();
+        const response = await fetch(`${BASE_URL}`,{
+            method: "POST",
+            //  Tell the server you're sending JSON
+            headers: { 
+                "Content-Type": "application/json" //  Tell the server you're sending JSON
+            },
+            //body should be string
+            body:JSON.stringify({roastPrompt})
+        })
+        if (!response.ok) throw new Error("Failed to generate roast");
+        const data = await response.json();
+        return data.roast;
+        
     } catch (error) {
         console.log("Error Ocuured While generating Roast", error);
         return "OOPS!! Forget about the code, looks like someone don't even know how to type your own github username"

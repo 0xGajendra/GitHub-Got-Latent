@@ -1,14 +1,12 @@
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_API_KEY;
-import axios from 'axios';
- const BASE_URL = "https://api.github.com/users/"
+
+const BASE_URL = import.meta.env.VITE_GITHUB_BASE_URL;
+
 
 
 // Function to fetch repository statistics of a user
 export const fetchRepoStats = async (username) => {
   
-    const response = await fetch(`https://api.github.com/users/${username}/repos`, {
-      headers: { Authorization: `token ${GITHUB_TOKEN}` }, // Use token for authentication
-    });
+    const response = await fetch(`${BASE_URL}/users/${username}/repos`);
     if (!response.ok) throw new Error("Failed to fetch repos");
     const repos = await response.json();
       let total_commits = 0;
@@ -45,7 +43,7 @@ export const fetchRepoStats = async (username) => {
 
 async function getCommitsForRepo(username,repo){
   try {
-    const response = await fetch(`https://api.github.com/repos/${username}/${repo}/commits?author=${username}`);
+    const response = await fetch(`${BASE_URL}/repos/${username}/${repo}/commits`);
     if(!response.ok) throw new Error("Failed to fetch the repo");
     return response.json();
   } catch (error) {
@@ -56,9 +54,7 @@ async function getCommitsForRepo(username,repo){
 
 
  export const fetchUserProfile = async (username, ) => {
-    const response = await fetch(`https://api.github.com/users/${username}`, {
-      headers: { Authorization: `token ${GITHUB_TOKEN}` },
-    });
+    const response = await fetch(`${BASE_URL}/users/${username}`);
     if(!response) return null;
     if (!response.ok) return "user not found";
     const data = await response.json();

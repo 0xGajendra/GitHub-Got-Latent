@@ -27,7 +27,7 @@ No sugarcoating. Just pure disrespect.
 Today's date is ${currentDate.toDateString()}, so use that as a reference for how outdated their repos are. Absolutely destroy their coding skills, their activity (or lack thereof), and their overall contribution to GitHub. Act like a disappointed senior developer, a ruthless cyberbully, and a stand-up comedian all at once.
 
 Produce the roast line by line, and don’t use special characters like * or "".
-Make it dark, funny, and Instagram-comment-style. Keep it around 250 words, not less, not more.
+Make it dark, funny, and Instagram-comment-style. Keep it around 150 words, not less, not more.
 `;
 
       // Call the API and update state with response
@@ -47,7 +47,7 @@ Make it dark, funny, and Instagram-comment-style. Keep it around 250 words, not 
     return <></>;
   }
   return (
-    <div className="h-full drop-shadow-2xl backdrop-blur-sm w-3xl mt-10 border border-amber-50 rounded-2xl tracking-wider">
+    <div className="h-full drop-shadow-2xl backdrop-blur-sm w-3xl mt-10 border border-amber-50 rounded-2xl tracking-wider flex justify-center items-center px-5">
       {roast}
     </div>
   );
