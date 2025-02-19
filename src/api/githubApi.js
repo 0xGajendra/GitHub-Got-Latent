@@ -11,6 +11,11 @@ export const fetchRepoStats = async (username) => {
     });
     if (!response.ok) throw new Error("Failed to fetch repos");
     const repos = await response.json();
+      let total_commits = 0;
+      for(const repo of repos){
+        const commits  = await getCommitsForRepo(username,repo.name)
+        total_commits+=commits.length;
+      }
     const repoStats = {
         // The reduce() method processes an array and reduces it to a **single value**
 
@@ -26,11 +31,9 @@ export const fetchRepoStats = async (username) => {
           acc[repo.language] = (acc[repo.language] || 0) + 1; // Count occurrences of each language
         }
         return acc;
-      }, {})),
+      },{})),
+      total_commits,
 
-      
-  
-      
       last_updated_repo: repos.sort(
         (a, b) => new Date(b.updated_at) - new Date(a.updated_at) // Sort by update time
       )[0]?.updated_at || "No repos found", // Get the latest update time or return "No repos found"
@@ -38,6 +41,19 @@ export const fetchRepoStats = async (username) => {
     return repoStats;
   };
   
+
+
+async function getCommitsForRepo(username,repo){
+  try {
+    const response = await fetch(`https://api.github.com/repos/${username}/${repo}/commits?author=${username}`);
+    if(!response.ok) throw new Error("Failed to fetch the repo");
+    return response.json();
+  } catch (error) {
+      return {};
+  }
+}
+
+
 
  export const fetchUserProfile = async (username, ) => {
     const response = await fetch(`https://api.github.com/users/${username}`, {
