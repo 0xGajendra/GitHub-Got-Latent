@@ -1,12 +1,23 @@
 
 import React from "react";
-
+import {motion} from "motion/react"
 
 const Profile = ({ data, repodata }) => {
   if (data) {
     return (
-      <div className="flex flex-col justify-center items-center">
-        <div className="text-white backdrop-blur-sm w-80 border-[#FF6002] border rounded-2xl flex justify-center gap-3 h-20 items-center">
+      <motion.div initial={{
+            opacity:0,
+            y:100
+          }}
+           animate= {{
+            opacity:1,
+            y:0,
+           }}
+           transition={{
+            delay:0,
+            duration: 2
+           }} className="flex flex-col justify-center items-center ">
+        <div className="text-white backdrop-blur-sm w-90 border-[#FF6002] border rounded-2xl flex justify-center gap-3 h-20 items-center">
           <div>
             <img
               src={data.profilePicture}
@@ -30,7 +41,7 @@ const Profile = ({ data, repodata }) => {
           </div>
         </div>
         
-      </div>
+      </motion.div>
     );
   }
   return <></>;

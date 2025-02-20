@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { generateRoast } from "../api/geminiApi";
+import { motion } from "motion/react";
 import { div } from "motion/react-client";
 
 const Roast = ({ data, repodata }) => {
@@ -51,17 +52,42 @@ Make it dark, funny, and Instagram-comment-style. Keep it around 150 words, not 
     return <></>;
   }
   if(!isLoading){
+    
     return (
-      <div className="h-full drop-shadow-2xl  backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
+      <motion.div initial={{
+        opacity:0,
+        y:100
+      }}
+       animate= {{
+        opacity:1,
+        y:0,
+       }}
+       transition={{
+        delay:1,
+        duration: 4
+       }} className="h-auto drop-shadow-2xl font-mono backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
         {roast}
-      </div>
+      </motion.div>
     );
   }
   else{
     return(
-      <div className=" drop-shadow-2xl h-200 backdrop-blur-sm w-sm animate-pulse text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
+      <div className="h-full">
+      <motion.div initial={{ 
+        opacity : 0,
+        y: 100
+       }} 
+       animate = {{height : "100%",
+        opacity:1,
+        y:0
 
-      </div>
+       }} transition=
+       {{duration : 3,
+        
+       }} className=" drop-shadow-2xl h-120 backdrop-blur-sm w-sm animate-pulse text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
+          
+      </motion.div>
+        </div>
     )
   }
 };
