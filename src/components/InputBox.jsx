@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {fetchRepoStats, fetchUserProfile} from '../api/githubApi'
 
-const InputBox = ({setData,setRepodata}) => {
+const InputBox = ({setData,setRepodata, }) => {
   const [username,setUsername]=useState('');
   const handleClick = async ()=>{
     if(!username.trim()) return;

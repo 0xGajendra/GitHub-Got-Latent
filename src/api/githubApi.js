@@ -47,7 +47,7 @@ async function getCommitsForRepo(username,repo){
     if(!response.ok) throw new Error("Failed to fetch the repo");
     return response.json();
   } catch (error) {
-      return {};
+      return [];
   }
 }
 

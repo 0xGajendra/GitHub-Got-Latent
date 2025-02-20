@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { generateRoast } from "../api/geminiApi";
+import { div } from "motion/react-client";
 
 const Roast = ({ data, repodata }) => {
-  const date = new Date();
+  const [isLoading, setIsLoading] = useState(true);
   const [roast, setRoast] = useState("");
   const currentDate = new Date();
   useEffect(() => {
@@ -33,9 +34,12 @@ Make it dark, funny, and Instagram-comment-style. Keep it around 150 words, not 
       // Call the API and update state with response
       const roastResponse = await generateRoast(roastPrompt);
       setRoast(roastResponse);
+      console.log(roastResponse);
+      setIsLoading(false);
     }
-
+    
     // Call the function immediately
+    setIsLoading(true)
     getRoast();
   }, [data, repodata]); // Dependencies that will trigger useEffect when changed
 
@@ -46,11 +50,20 @@ Make it dark, funny, and Instagram-comment-style. Keep it around 150 words, not 
   if (!data) {
     return <></>;
   }
-  return (
-    <div className="h-full drop-shadow-2xl backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl tracking-wider flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 my-5">
-      {roast}
-    </div>
-  );
+  if(!isLoading){
+    return (
+      <div className="h-full drop-shadow-2xl  backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
+        {roast}
+      </div>
+    );
+  }
+  else{
+    return(
+      <div className=" drop-shadow-2xl h-200 backdrop-blur-sm w-sm animate-pulse text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
+
+      </div>
+    )
+  }
 };
 
 export default Roast;
