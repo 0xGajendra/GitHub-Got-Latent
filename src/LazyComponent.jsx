@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import videoDesktop from "./assets/background-video.webm";
 import InputBox from "./components/InputBox";
 import Star from "./components/Star";
-import Profile from"./components/Profile"
-import Roast from './components/Roast';
+import { Suspense, lazy } from "react";
+const Profile = lazy(()=> import("./components/Profile"));
+const Roast = lazy(()=> import("./components/Roast"));
 import { motion } from "motion/react"
 const LazyComponent = () => {
   const [data, setData] = useState(null);
   const [repodata, setRepodata] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [showComponents, setShowComponents] = useState(false);
+const [isLoadingRoast, setIsLoadingRoast] = useState(false);
+const [username,setUsername]=useState('');
   return (
     <motion.div 
     
@@ -43,12 +46,16 @@ const LazyComponent = () => {
         <h3 className="text-l  font-mono sm:text-xl">Welcome to </h3>
         <h1 className="text-3xl font-bold sm:text-5xl "> <motion.span initial={{y:0}} animate={{ y: 0 }} whileHover={{y:20}} className='text-[#FF6002] '>GitHub's</motion.span> Got Latent</h1>
         <p className="text-md mt-4 mx-20 sm:text-lg sm:mt-5">Less contributions, more humiliation. Get a GitHub roast hotter than your CPU!</p>
-        <InputBox setData={setData} setRepodata={setRepodata}/>
+        <InputBox setUsername={setUsername} setShowComponents={setShowComponents}/>
       </div>
+      { showComponents &&
         <div className='flex flex-col items-center mx-auto m-6 md:mt-10 space-y-6 h-full w-full px-4'>
-          <Profile data={data} repodata={repodata} />
-          <Roast data={data} repodata={repodata}  />
-          </div>
+        
+        <Profile username={username}  setData={setData} setRepodata={setRepodata} data={data} />
+        <Roast data={data} repodata={repodata}/>
+        
+        </div>
+      }
       </motion.div>
       
     </motion.div>

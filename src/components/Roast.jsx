@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { generateRoast } from "../api/geminiApi";
 import { motion } from "motion/react";
-import { div } from "motion/react-client";
+import { lazy, Suspense } from 'react';
+const FallbackRoast = lazy(()=> import('./FallbackRoast')) 
 
 const Roast = ({ data, repodata }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,48 +49,25 @@ Make it dark, funny, and Instagram-comment-style. Keep it around 150 words, not 
   console.log(data, repodata);
 
   // Render the roast in a styled container
-  if (!data) {
-    return <></>;
-  }
-  if(!isLoading){
-    
     return (
+      <div>
+        <Suspense fallback = {<FallbackRoast/>} >
       <motion.div initial={{
         opacity:0,
         y:100
       }}
        animate= {{
-        opacity:1,
+         opacity:1,
         y:0,
-       }}
-       transition={{
+      }}
+      transition={{
         delay:1,
         duration: 4
-       }} className="h-auto drop-shadow-2xl font-mono backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
+      }} className="h-auto drop-shadow-2xl font-mono backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
         {roast}
       </motion.div>
+          </Suspense>
+         </div>
     );
   }
-  else{
-    return(
-      <div className="h-full">
-      <motion.div initial={{ 
-        opacity : 0,
-        y: 100
-       }} 
-       animate = {{height : "100%",
-        opacity:1,
-        y:0
-
-       }} transition=
-       {{duration : 3,
-        
-       }} className=" drop-shadow-2xl h-120 backdrop-blur-sm w-sm animate-pulse text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
-          
-      </motion.div>
-        </div>
-    )
-  }
-};
-
 export default Roast;
