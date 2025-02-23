@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { motion } from "framer-motion"; // Correct import
-import FallbackProfile from "./FallbackProfile"; // Direct import
+import { motion } from "framer-motion"; // Correct import// Direct import
 import { fetchRepoStats, fetchUserProfile } from "../api/githubApi";
 
 const Profile = ({ username, setData, setRepodata, data }) => {
   useEffect(() => {
     async function fetchUser() {
       if (!username.trim()) return;
-
       try {
         const userData = await fetchUserProfile(username);
         if (userData.status === "404") {

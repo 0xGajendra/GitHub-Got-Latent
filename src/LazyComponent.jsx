@@ -14,7 +14,6 @@ const [isLoadingRoast, setIsLoadingRoast] = useState(false);
 const [username,setUsername]=useState('');
   return (
     <motion.div 
-    
     className='h-screen overflow-y-scroll overflow-x-hidden'>
       <video
         className="fixed top-0 left-0 w-full h-full object-cover -z-10"
