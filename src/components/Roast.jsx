@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { generateRoast } from "../api/geminiApi";
 import { motion } from "motion/react";
+import Tubespinner from "../assets/tube-spinner.svg?react";
 
 const Roast = ({ data, repodata }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,9 +63,9 @@ const Roast = ({ data, repodata }) => {
       }}
       transition={{
         delay:1,
-        duration: 4
-      }} className="h-auto drop-shadow-2xl font-mono backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
-       Loading  . . . . . . . .. ..
+        duration: 1
+      }} className="h-auto drop-shadow-2xl font-mono backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md  m-20 ">
+        Loading
       </motion.div>
          </div>
     );
@@ -82,7 +83,7 @@ const Roast = ({ data, repodata }) => {
       }}
       transition={{
         delay:1,
-        duration: 4
+        duration: 2
       }} className="h-auto drop-shadow-2xl font-mono backdrop-blur-sm w-sm text-sm mt-6 md:mt-10 border text-white border-amber-50 rounded-2xl flex justify-center items-center mb-10 p-3 md:p-10 md:w-3xl md:text-lg sm:w-md m-20 ">
         {roast}
       </motion.div>
