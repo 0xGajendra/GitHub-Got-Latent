@@ -14,7 +14,6 @@ A fun and sarcastic **GitHub Profile Roaster** built with **React**, roasting us
 ## Live Demo
 **[Try it out here](https://githubsgotlatent.vercel.app/)**
 
-*(Replace with your actual deployed URL)*
 
 ---
 
